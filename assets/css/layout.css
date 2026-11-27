@@ -1,0 +1,76 @@
+/* Panel de administración (body.dashboard): marco, menú lateral, barra superior y botones. Ver extras/mockups/ */
+body.dashboard { @apply relative min-h-screen p-3 lg:p-5 bg-canvas text-ink text-sm font-sans overflow-x-hidden; }
+.shell { @apply relative z-10 min-h-[calc(100vh-1.5rem)] lg:min-h-[calc(100vh-2.5rem)] bg-soft/55 backdrop-blur-2xl border border-white/75 rounded-2xl shadow-[0_20px_50px_rgba(30,30,30,0.08)] lg:grid lg:grid-cols-[260px_1fr] lg:transition-[grid-template-columns] lg:duration-200; }
+.content { @apply min-w-0 m-2 lg:m-3 bg-white/72 backdrop-blur-md border border-white/80 rounded-2xl; }
+
+/* Menú lateral: fijo en escritorio, deslizable en móvil (assets/js/sidebar.js) */
+.sidebar { @apply fixed inset-y-0 left-0 z-30 flex flex-col w-[260px] px-6 py-8 overflow-y-auto bg-soft/90 backdrop-blur-xl border-r border-white/75 rounded-r-2xl invisible -translate-x-full transition-transform lg:static lg:w-auto lg:visible lg:translate-x-0 lg:bg-transparent lg:backdrop-blur-none lg:border-0 lg:rounded-none; }
+.sidebar.is-open { @apply visible translate-x-0 shadow-xl; }
+.sidebar-head { @apply flex items-center justify-between; }
+.topbar .menu-btn { @apply lg:hidden; }
+.nav-title { @apply mt-7 mb-2 text-xs text-ink-2; }
+.nav { @apply flex flex-col gap-1; }
+.nav > li > a, .nav > li > span { @apply flex items-center gap-3 px-3.5 py-2 border border-transparent rounded-lg text-ink-2; }
+.nav > li > a { @apply hover:bg-white focus-visible:outline-2 focus-visible:outline-violeta; }
+.nav a[aria-current="page"] { @apply bg-white border-line text-ink font-bold; }
+.nav span[aria-disabled="true"] { @apply text-ink-3 cursor-not-allowed; }
+.account { @apply mt-auto pt-4; }
+.user { @apply flex items-center gap-3; }
+.user-name { @apply font-bold; }
+.user-role { @apply text-xs text-ink-2; }
+.avatar { @apply grid place-items-center shrink-0 size-10 rounded-full bg-ink-4 text-white; }
+.avatar-sm { @apply size-9; }
+
+/* Menú contraído (solo escritorio): queda una columna de iconos. Clase en <html>, ver assets/js/sidebar-state.js */
+/* Único botón del menú: icono de panel lateral como en el mockup (cuadro con una línea vertical) */
+.sidebar-toggle { @apply grid place-items-center size-8 rounded-md text-ink-3 cursor-pointer hover:text-ink hover:bg-white/70 focus-visible:outline-2 focus-visible:outline-violeta; }
+.sidebar-icon { @apply relative size-[18px] border-[1.5px] border-current rounded-[4px]; }
+.sidebar-icon::before { content: ""; @apply absolute inset-y-0 left-[5px] w-[1.5px] bg-current; }
+html.sidebar-collapsed .shell { @apply lg:grid-cols-[76px_1fr]; }
+html.sidebar-collapsed .sidebar { @apply lg:px-3 lg:items-center lg:overflow-x-hidden; }
+html.sidebar-collapsed .sidebar-head { @apply lg:flex-col lg:gap-3; }
+html.sidebar-collapsed .brand-name,
+html.sidebar-collapsed .nav-label,
+html.sidebar-collapsed .user-info { @apply lg:sr-only; }
+html.sidebar-collapsed .nav-title { @apply lg:sr-only; }
+html.sidebar-collapsed .nav { @apply lg:items-center lg:mt-6; }
+html.sidebar-collapsed .nav > li > a,
+html.sidebar-collapsed .nav > li > span { @apply lg:justify-center lg:px-0 lg:size-11; }
+html.sidebar-collapsed .nav .fi { @apply lg:text-xl; }
+html.sidebar-collapsed .user { @apply lg:justify-center; }
+@media (prefers-reduced-motion: reduce) {
+    .shell { @apply transition-none; }
+}
+
+/* Barra superior */
+.topbar { @apply flex items-center gap-3 m-3 sm:m-5 px-3 sm:px-5 h-14 bg-white/60 backdrop-blur-sm border border-white/80 rounded-xl; }
+.breadcrumb ol { @apply flex items-center gap-2 text-ink-2; }
+.breadcrumb li + li::before { content: ">"; @apply mr-2 text-ink-4; }
+.breadcrumb [aria-current] { @apply text-ink font-bold; }
+.topbar-actions { @apply flex items-center gap-3 ml-auto; }
+.search { @apply relative hidden md:block w-60; }
+.search .fi { @apply absolute left-3 top-1/2 -translate-y-1/2 text-ink-2 pointer-events-none; }
+.search input { @apply w-full h-9 pl-9 pr-3 bg-soft border border-line rounded-lg text-xs placeholder:text-ink-3 focus:outline-2 focus:outline-violeta; }
+.icon-btn { @apply grid place-items-center shrink-0 size-9 bg-white border border-line rounded-lg cursor-pointer hover:bg-soft focus-visible:outline-2 focus-visible:outline-violeta; }
+
+/* Encabezado de página y botones */
+.page-head { @apply flex flex-wrap items-center gap-4 px-5 lg:px-10 pt-2 pb-5 border-b border-canvas; }
+.page-head h1 { @apply text-[28px] font-bold; }
+.tabs { @apply flex flex-wrap gap-2; }
+.tabs a { @apply px-4 py-1.5 rounded-lg bg-mist text-[13px] text-ink-2 hover:bg-canvas focus-visible:outline-2 focus-visible:outline-violeta; }
+.tabs a[aria-current="true"] { @apply bg-ink text-white; }
+.page-actions { @apply flex gap-3 ml-auto; }
+.btn { @apply inline-flex items-center gap-2 h-[34px] px-4 bg-white border border-line rounded-lg text-[13px] font-bold cursor-pointer hover:bg-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violeta; }
+.btn-dark { @apply bg-ink border-ink text-white hover:bg-[#343a40]; }
+.muted { @apply text-ink-2; }
+
+/* Tablas, estados y vacíos compartidos por las páginas del panel */
+.table { @apply w-full text-left; }
+.table th { @apply pb-3 border-b border-canvas text-xs font-normal text-ink-2; }
+.table td { @apply py-3 border-b border-mist; }
+.badge { @apply inline-block px-3 py-1 rounded-md bg-mist text-xs text-ink-2 whitespace-nowrap; }
+.badge-pendiente { @apply bg-durazno; }
+.badge-validado { @apply bg-menta; }
+.empty { @apply flex flex-1 flex-col items-center justify-center gap-2 py-10 text-[13px] text-ink-2; }
+.empty .fi { @apply text-xl text-ink-3; }
+.badge-matriculado { @apply bg-menta; }

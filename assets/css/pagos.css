@@ -1,0 +1,7 @@
+/* Pagos (src/pages/pagos.php). Ver extras/mockups/pagos-mockup.excalidraw. Lo compartido está en crud.css */
+.file-link { @apply inline-flex items-center gap-1.5 text-xs underline hover:text-violeta; }
+.form .file-drop { @apply flex items-center gap-3 mb-5 p-3 bg-soft/75 border border-dashed border-ink-4 rounded-xl cursor-pointer hover:border-violeta; }
+.file-drop .fi { @apply text-2xl text-ink-2; }
+.file-drop span { @apply text-xs text-ink; }
+/* El input real está oculto (sr-only): el foco del teclado se muestra en su área */
+.file-drop:has(+ #comprobante:focus-visible) { @apply outline-2 outline-violeta; }

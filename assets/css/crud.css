@@ -1,0 +1,50 @@
+/* Páginas CRUD del panel (pagos, estudiantes, ...): rejilla tabla + formulario lateral, filtros, paginación y confirmación */
+.notice { @apply flex items-center gap-2 mx-5 lg:mx-10 mt-5 px-3 py-2.5 rounded-xl bg-celeste/80 backdrop-blur-sm border border-white/70 text-[13px]; }
+.sub { @apply block text-[11px] text-ink-2; }
+.counts { @apply flex flex-wrap items-center gap-1 mt-2; }
+.counts .muted { @apply ml-2 text-xs; }
+
+.crud { @apply grid items-start gap-5 p-5 lg:px-10 xl:grid-cols-[1fr_300px]; }
+.crud-main { @apply flex flex-col gap-4 min-w-0; }
+.card { @apply bg-white/65 backdrop-blur-sm border border-white/80 rounded-2xl shadow-[0_8px_24px_rgba(30,30,30,0.04)] overflow-hidden; }
+
+/* Filtros */
+.filters { @apply flex flex-wrap items-center gap-2; }
+.filters select, .filters input { @apply h-[38px] px-3 bg-white/75 backdrop-blur-sm border border-white/80 rounded-xl text-xs text-ink-2 focus:outline-2 focus:outline-violeta; }
+.filter-search { @apply relative grow basis-52; }
+.filter-search .fi { @apply absolute z-10 left-3 top-1/2 -translate-y-1/2 text-ink-2 pointer-events-none; }
+.filter-search input { @apply w-full pl-9 bg-soft placeholder:text-ink-3; }
+.filter-dates { @apply flex gap-2; }
+
+/* Tabla */
+.table-scroll { @apply overflow-x-auto; }
+.card .table th { @apply px-4 py-3 bg-soft/75 border-line text-[11px]; }
+.card .table td { @apply px-4 text-[13px] whitespace-nowrap; }
+.card .table tr.is-selected td { @apply bg-lila; }
+.row-actions { @apply flex gap-1; }
+.row-actions .icon-btn { @apply size-7 text-xs disabled:opacity-40 disabled:cursor-not-allowed; }
+
+/* Paginación */
+.pagination { @apply flex flex-wrap items-center justify-between gap-3 px-5 py-3 border-t border-canvas text-xs; }
+.pagination nav { @apply flex gap-1.5; }
+.page { @apply grid place-items-center size-7 border border-line rounded-md hover:bg-soft focus-visible:outline-2 focus-visible:outline-violeta; }
+.page[aria-current="page"] { @apply bg-ink border-ink text-white; }
+.page[aria-disabled="true"] { @apply text-ink-4 hover:bg-transparent; }
+
+/* Formulario lateral */
+.side-form { @apply p-5 xl:sticky xl:top-5; }
+.side-form h2 { @apply text-base font-bold; }
+.side-form > .muted { @apply mt-1 text-[11px]; }
+.form { @apply flex flex-col mt-4; }
+.form label { @apply mb-1.5 text-xs text-ink-2; }
+.form select, .form input:not([type="file"]) { @apply w-full h-8 mb-4 px-3 bg-soft border border-line rounded-lg text-[13px] text-ink focus:outline-2 focus:outline-violeta; }
+.form-row { @apply grid grid-cols-2 gap-3; }
+.form-actions { @apply grid grid-cols-2 gap-3 mt-1; }
+.form-actions .btn { @apply justify-center h-9; }
+
+/* Confirmación de anulación */
+.confirm { @apply m-auto w-[min(90vw,320px)] p-5 rounded-2xl bg-white/85 backdrop-blur-xl border border-white/80 text-sm text-ink shadow-xl backdrop:bg-ink/30; }
+.confirm-head { @apply flex items-center gap-3 mb-3; }
+.confirm-head h2 { @apply text-[15px] font-bold; }
+.confirm-icon { @apply grid place-items-center size-8 rounded-full bg-durazno font-bold; }
+.confirm .sub { @apply mt-2 mb-5 text-xs; }

@@ -1,0 +1,12 @@
+{
+  "name": "sendero-digital",
+  "private": true,
+  "scripts": {
+    "build:css": "tailwindcss -i assets/css/build.css -o assets/css/app.build.css --minify",
+    "watch:css": "tailwindcss -i assets/css/build.css -o assets/css/app.build.css --watch"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4",
+    "tailwindcss": "^4"
+  }
+}

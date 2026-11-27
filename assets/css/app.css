@@ -1,0 +1,129 @@
+/* Paleta tomada de extras/mockups/*.excalidraw */
+@theme {
+    --font-sans: Helvetica, Arial, sans-serif;
+    --color-ink: #1e1e1e;
+    --color-ink-2: #495057;
+    --color-ink-3: #868e96;
+    --color-ink-4: #adb5bd;
+    --color-line: #dee2e6;
+    --color-canvas: #e9ecef;
+    --color-soft: #f8f9fa;
+    --color-lila: #e5dbff;
+    --color-violeta: #9775fa;
+    --color-celeste: #d0ebff;
+    --color-durazno: #ffe8cc;
+    --color-menta: #d3f9d8;
+    --color-exito: #2b8a3e;
+    --color-error-bg: #ffe3e3;
+    --color-error: #c92a2a;
+    --color-aviso: #b35c00;
+    --color-mist: #f1f3f5;
+    --color-azul: #4dabf7;
+    --color-naranja: #ffa94d;
+    --color-verde: #69db7c;
+}
+
+/* Login y recuperar (body.auth): estructura body > main > section > article */
+body.auth { @apply relative min-h-screen grid place-items-center p-5 bg-canvas text-ink text-sm font-sans overflow-x-hidden; }
+.auth main { @apply relative z-10 w-full max-w-[880px]; }
+.auth section {
+    @apply relative grid min-h-[620px] gap-5 p-3 bg-soft/55 backdrop-blur-2xl border border-white/75 rounded-2xl shadow-[0_20px_50px_rgba(30,30,30,0.08)] md:grid-cols-2;
+    animation: fadeSlideIn 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.auth section::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1.5px;
+    background: radial-gradient(280px circle at var(--mx, 50%) var(--my, 50%), rgba(151, 117, 250, 0.75), rgba(208, 235, 255, 0.45) 45%, transparent 72%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+}
+.auth section.is-glowing::before { opacity: 1; }
+.auth article { @apply flex flex-col p-10 rounded-xl border; }
+/* En móvil se oculta el panel de marca para que el formulario quede a la vista */
+article.brand-panel { @apply hidden md:flex justify-between gap-8 bg-lila/55 border-white/50; }
+article.form-panel  { @apply justify-center bg-white/90 border-white/80; }
+
+/* Iconos de Flaticon alineados con el texto */
+.fi { @apply flex; }
+
+/* Marca */
+.brand { @apply flex items-center gap-3 text-base font-bold; }
+.logo { @apply flex items-center justify-center gap-[3px] size-[34px] bg-ink rounded-lg; }
+.logo i { @apply w-1 h-3 bg-white rounded-sm; }
+.logo i:nth-child(2) { @apply h-[18px]; }
+
+/* Texto del panel lila */
+.intro-title { @apply text-[22px] font-bold leading-snug; }
+.intro p:not(.intro-title) { @apply mt-3.5 text-ink-2 leading-relaxed; }
+.points { @apply flex flex-col gap-2 mt-5 text-ink-2; }
+.points li { @apply flex items-center gap-2; }
+.tags { @apply flex flex-wrap gap-2 text-xs text-ink-2; }
+.tags li { @apply px-3 py-1.5 rounded-lg bg-white; }
+.tags li:nth-child(2) { @apply bg-celeste; }
+.tags li:nth-child(3) { @apply bg-durazno; }
+.tags li:nth-child(4) { @apply bg-menta; }
+
+/* Formulario */
+.auth h1 { @apply text-[28px] font-bold; }
+.subtitle { @apply mt-1.5 mb-7 text-ink-2; }
+.auth form { @apply flex flex-col; }
+.auth form > label { @apply mb-1.5 text-[13px] text-ink-2; }
+.field { @apply relative mb-[18px]; }
+.field > .fi { @apply absolute left-3 top-1/2 -translate-y-1/2 text-ink-2 pointer-events-none; }
+.field input { @apply w-full py-2.5 pl-9 pr-3 bg-soft border border-line rounded-lg placeholder:text-ink-3 transition-colors focus:outline-2 focus:outline-offset-1 focus:outline-violeta; }
+.field input[aria-invalid="true"] { @apply border-error bg-error-bg/40; }
+.field-password input { @apply pr-12; }
+.toggle-pass { @apply absolute right-1 top-1/2 -translate-y-1/2 p-2.5 bg-transparent text-ink-3 rounded-md cursor-pointer hover:text-ink hover:bg-canvas/70 focus-visible:outline-2 focus-visible:outline-violeta; }
+.caps-hint { @apply hidden items-center gap-1.5 -mt-3 mb-4 text-xs text-aviso; }
+.caps-hint.is-visible { @apply flex; }
+.options { @apply flex items-center justify-between gap-3 mb-6 text-[13px]; }
+.options label { @apply flex items-center gap-2 py-2 text-ink-2; }
+.options input { @apply accent-ink; }
+.options a { @apply py-2; }
+.auth button[type="submit"] { @apply flex items-center justify-center gap-2 p-3 bg-ink text-white font-bold rounded-lg cursor-pointer transition-all duration-150 hover:bg-[#343a40] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] disabled:opacity-75 disabled:cursor-wait disabled:hover:translate-y-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violeta; }
+.spinner { @apply hidden size-4 rounded-full border-2 border-white/30 border-t-white animate-spin; }
+.auth button[type="submit"].is-loading .spinner { @apply inline-block; }
+.auth button[type="submit"].is-loading .btn-icon { @apply hidden; }
+
+/* Mensajes y enlaces */
+.auth a { @apply underline rounded hover:text-violeta focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violeta; }
+.note { @apply mt-6 text-xs text-center text-ink-2; }
+.alert { @apply flex items-center gap-2 mb-[18px] px-3 py-2.5 bg-menta text-exito rounded-lg; }
+.alert-error { @apply hidden items-center gap-2 mb-[18px] px-3 py-2.5 bg-error-bg text-error text-[13px] rounded-lg; }
+.alert-error.is-visible { @apply flex; }
+.back { @apply flex items-center justify-center gap-2 mt-6 text-[13px]; }
+
+/* Fondo aurora: orbes difuminados que flotan; uno sigue al cursor (ver assets/js/aurora.js) */
+.aurora { @apply fixed inset-0 z-0 overflow-hidden pointer-events-none; }
+.orb { @apply absolute rounded-full blur-[80px] will-change-transform; }
+.orb-a { @apply size-[420px] -top-20 -left-16 bg-violeta/45; animation: floatA 14s ease-in-out infinite alternate; }
+.orb-b { @apply size-[380px] top-[10%] -right-16 bg-celeste/90; animation: floatB 16s ease-in-out infinite alternate; }
+.orb-c { @apply size-[360px] -bottom-24 left-[18%] bg-durazno/95; animation: floatB 18s ease-in-out infinite alternate-reverse; }
+.orb-d { @apply size-[340px] -bottom-16 right-[12%] bg-menta/90; animation: floatA 15s ease-in-out infinite alternate-reverse; }
+.orb-cursor {
+    @apply size-[340px] top-0 left-0 opacity-90 blur-[55px];
+    background: radial-gradient(circle, rgba(151, 117, 250, 0.55) 0%, rgba(208, 235, 255, 0.35) 55%, transparent 75%);
+    transform: translate3d(50vw, 50vh, 0) translate(-50%, -50%);
+}
+@keyframes floatA {
+    from { transform: translate3d(0, 0, 0) scale(1); }
+    to   { transform: translate3d(50px, 35px, 0) scale(1.1); }
+}
+@keyframes floatB {
+    from { transform: translate3d(0, 0, 0) scale(1); }
+    to   { transform: translate3d(-45px, 40px, 0) scale(1.08); }
+}
+@keyframes fadeSlideIn {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+    .orb, .auth section { animation: none; }
+}

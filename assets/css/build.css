@@ -1,0 +1,10 @@
+/* Entrada para `npm run build:css` → genera app.build.css (observaciones 0a y 18) */
+@import "tailwindcss";
+@source not "../../extras";
+@import "./app.css";
+@import "./layout.css";
+@import "./overview.css";
+@import "./crud.css";
+@import "./pagos.css";
+@import "./cursos.css";
+@import "./certificados.css";

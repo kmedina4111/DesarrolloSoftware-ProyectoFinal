@@ -1,0 +1,15 @@
+/* Certificación (src/pages/certificados.php). Ver extras/mockups/certificacion-mockup.excalidraw. Lo compartido está en crud.css */
+.badge-emitido { @apply bg-lila; }
+.badge-vigente { @apply bg-menta; }
+.badge-regenerado { @apply bg-celeste; }
+.badge-si { @apply bg-menta; }
+.badge-no { @apply bg-error-bg text-error; }
+
+.card .table td.code { @apply font-bold tabular-nums; }
+
+/* Formulario: requisitos y vista previa del código */
+.requisitos { @apply flex flex-wrap gap-1.5 -mt-2 mb-4; }
+.form .form-label { @apply mb-1.5 text-xs text-ink-2; }
+.code-preview { @apply flex flex-col items-center gap-1 mb-5 p-3 bg-soft/75 border border-dashed border-ink-4 rounded-xl text-center; }
+.code-preview strong { @apply text-lg tracking-wide tabular-nums; }
+.form-actions .btn:disabled { @apply opacity-40 cursor-not-allowed; }

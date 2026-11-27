@@ -1,0 +1,25 @@
+/* Cursos (src/pages/cursos.php). Ver extras/mockups/cursos-mockup.excalidraw. Lo compartido está en crud.css */
+.badge-activo { @apply bg-menta; }
+
+/* Barra de cupo ocupado bajo "inscritos / cupo" */
+progress.cupo { @apply block w-14 h-1 mt-1 rounded-full overflow-hidden appearance-none bg-mist; }
+progress.cupo::-webkit-progress-bar { @apply bg-mist; }
+progress.cupo::-webkit-progress-value { @apply bg-ink rounded-full; }
+progress.cupo::-moz-progress-bar { @apply bg-ink rounded-full; }
+
+/* Formulario */
+.form textarea { @apply w-full mb-4 px-3 py-2 bg-soft border border-line rounded-lg text-[13px] text-ink resize-y focus:outline-2 focus:outline-violeta; }
+
+/* Interruptor Activo / Inactivo (checkbox nativo con apariencia de switch) */
+.form .switch { @apply flex items-center gap-2.5 mb-5 text-[13px] text-ink cursor-pointer; }
+.switch input { @apply relative w-9 h-5 rounded-full bg-ink-4 appearance-none cursor-pointer transition-colors checked:bg-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violeta; }
+.switch input::after { content: ""; @apply absolute top-0.5 left-0.5 size-4 rounded-full bg-white transition-transform; }
+.switch input:checked::after { @apply translate-x-4; }
+
+/* Confirmación con tres botones */
+.confirm .badge { @apply mb-3 bg-menta; }
+.confirm-actions { @apply grid grid-cols-3 gap-2; }
+.confirm-actions .btn { @apply justify-center h-9 px-2 text-xs disabled:opacity-40 disabled:cursor-not-allowed; }
+@media (prefers-reduced-motion: reduce) {
+    .switch input, .switch input::after { @apply transition-none; }
+}

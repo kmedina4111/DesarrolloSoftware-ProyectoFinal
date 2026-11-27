@@ -1,0 +1,50 @@
+/* Dashboard (src/pages/overview.php). Ver extras/mockups/dashboard-mockup.excalidraw */
+
+/* Tarjetas de resumen */
+.stats { @apply grid gap-5 p-5 lg:px-10 sm:grid-cols-2 xl:grid-cols-4; }
+.stat { @apply relative min-h-[124px] p-5 rounded-2xl bg-lila/75 backdrop-blur-sm border border-white/60; }
+.stat:nth-child(2) { @apply bg-celeste/75; }
+.stat:nth-child(3) { @apply bg-durazno/75; }
+.stat:nth-child(4) { @apply bg-menta/75; }
+.stat-icon { @apply absolute top-3.5 right-4 grid place-items-center size-7 rounded-full bg-white/90; }
+.stat-label { @apply text-ink-2; }
+.stat-value { @apply mt-2 text-[30px] font-bold; }
+.stat-note { @apply inline-block mt-2 px-3 py-1 rounded-full bg-white/85 text-[11px] text-ink-2; }
+
+/* Paneles */
+.panels { @apply grid gap-5 px-5 lg:px-10 pb-10 xl:grid-cols-[3fr_2fr]; }
+.panel { @apply flex flex-col min-h-[243px] p-6 bg-white/65 backdrop-blur-sm border border-white/80 rounded-2xl shadow-[0_8px_24px_rgba(30,30,30,0.04)]; }
+.panel-head { @apply flex items-center justify-between mb-4; }
+.panel-head h2 { @apply text-base font-bold; }
+.panel-head a { @apply text-xs text-ink-2 rounded hover:text-violeta focus-visible:outline-2 focus-visible:outline-violeta; }
+
+/* Actividad reciente: el color del punto depende del tipo */
+.activity { @apply flex flex-col gap-4; }
+.activity li { @apply relative pl-5 text-[13px]; }
+.activity li::before { content: ""; @apply absolute left-0 top-1.5 size-2 rounded-full bg-violeta; }
+.activity li[data-tipo="pago"]::before { @apply bg-azul; }
+.activity li[data-tipo="certificado"]::before { @apply bg-verde; }
+.activity li[data-tipo="curso"]::before { @apply bg-naranja; }
+.activity .muted { @apply text-[11px]; }
+
+/* Estado de cursos: barras con <progress>, color rotativo */
+.courses { @apply flex flex-col gap-6; }
+.courses li { @apply grid grid-cols-[minmax(0,10rem)_1fr_auto] items-center gap-4 sm:gap-6; }
+.courses li:nth-child(4n+2) { --bar: var(--color-azul); }
+.courses li:nth-child(4n+3) { --bar: var(--color-naranja); }
+.courses li:nth-child(4n+4) { --bar: var(--color-verde); }
+.courses .muted { @apply text-xs; }
+.courses progress { @apply w-full h-2 rounded-full overflow-hidden appearance-none bg-mist; }
+.courses progress::-webkit-progress-bar { @apply bg-mist; }
+.courses progress::-webkit-progress-value { background: var(--bar, var(--color-violeta)); @apply rounded-full; }
+.courses progress::-moz-progress-bar { background: var(--bar, var(--color-violeta)); @apply rounded-full; }
+
+/* Accesos rápidos */
+.quick { @apply grid grid-cols-2 gap-4; }
+.quick a { @apply flex items-center justify-center gap-2 h-[70px] px-3 rounded-xl text-center font-bold bg-ink text-white hover:-translate-y-0.5 transition-transform focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violeta; }
+.quick a:nth-child(2) { @apply bg-celeste text-ink; }
+.quick a:nth-child(3) { @apply bg-durazno text-ink; }
+.quick a:nth-child(4) { @apply bg-menta text-ink; }
+@media (prefers-reduced-motion: reduce) {
+    .quick a { @apply hover:translate-y-0; }
+}
